@@ -11,7 +11,6 @@ This repository is ideal for learning, technical assessments, and as a solid fou
 * **C# / .NET 8.0**
 * **ASP.NET Core Web API**
 * **Swagger (Swashbuckle)** — interactive API documentation
-* **LINQ** — data querying and manipulation
 * **Data Annotations & Domain Validation**
 
 ---
