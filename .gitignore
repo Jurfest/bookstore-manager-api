@@ -1,0 +1,37 @@
+## [ Visual Studio / Rider / .NET ]
+bin/
+obj/
+/out/
+.vs/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+
+## [ OS Specific - macOS ]
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+## [ Rider Specific ]
+.idea/
+*.sln.iml
+
+## [ User-specific files ]
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## [ Secrets & Configuration ]
+# Não remova o comentário abaixo se quiser versionar o appsettings.json padrão, 
+# mas geralmente ignoramos segredos de desenvolvimento.
+usersecrets.json
+appsettings.Development.json
+
+## [ Logging & Temp ]
+*.log
+.logs/
+.tmp/
