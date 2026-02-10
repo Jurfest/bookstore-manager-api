@@ -1,156 +1,156 @@
-📚 Bookstore Management API
-A robust REST API built with .NET to manage a bookstore's inventory. This project implements a full CRUD (Create, Read, Update, Delete) system, featuring domain inheritance, strict data validation, and automated documentation with Swagger.
+# 📚 Bookstore Management API
 
-🚀 Technologies Used
-C# / .NET 8.0 (or your current version)
+A robust and well-structured REST API built with **.NET** to manage a bookstore's inventory. This project demonstrates clean architecture principles, domain modeling with inheritance, strict business rules, and a complete **CRUD** (Create, Read, Update, Delete) flow, all documented automatically via **Swagger**.
 
-ASP.NET Core Web API
+This repository is ideal for learning, technical assessments, and as a solid foundation for real-world .NET Web API projects.
 
-Swagger (Swashbuckle) for API documentation
+---
 
-LINQ for data manipulation
+## 🚀 Technologies Used
 
-🛠️ Features & Business Rules
-The system manages books with the following logic:
+* **C# / .NET 8.0**
+* **ASP.NET Core Web API**
+* **Swagger (Swashbuckle)** — interactive API documentation
+* **LINQ** — data querying and manipulation
+* **Data Annotations & Domain Validation**
 
-Requirements
-[x] Create a new book.
+---
 
-[x] List all books.
+## 🛠️ Features & Business Rules
 
-[x] Search for a specific book by ID.
+The system manages books following well-defined rules to ensure data integrity and consistency.
 
-[x] Edit existing book details.
+### ✅ Functional Requirements
 
-[x] Delete a book from the system.
+* [x] Create a new book
+* [x] List all books
+* [x] Retrieve a book by ID
+* [x] Update existing book details
+* [x] Delete a book from the system
 
-Data Validation
-IDs: Automatically generated GUIDs.
+### 🔐 Data Validation Rules
 
-Length: Titles and Authors must be between 2 and 120 characters.
+* **ID**: Automatically generated `GUID`
+* **Title & Author**:
 
-Stock & Price: Must be greater than or equal to zero (non-negative).
+  * Minimum: 2 characters
+  * Maximum: 120 characters
+* **Price & Stock**:
 
-Genre: Must belong to a predefined list (Fiction, Romance, Mystery, etc.).
+  * Must be greater than or equal to zero
+* **Genre**:
 
-Uniqueness: Prevents duplicate entries for the same title/author combination.
+  * Must belong to a predefined list (e.g. Fiction, Romance, Mystery, Sci‑Fi)
+* **Uniqueness**:
 
-Timestamps: Automatically manages CreatedAt and UpdatedAt fields.
+  * Prevents duplicate entries for the same **Title + Author** combination
+* **Timestamps**:
 
-📁 Domain Model
-The project uses class inheritance to organize the domain, ensuring a clean and scalable architecture.
+  * `CreatedAt` and `UpdatedAt` are managed automatically by the system
 
-Field,Type,Required,Rules
-Id,GUID,Yes,Generated automatically
-Title,string,Yes,2-120 characters
-Author,string,Yes,2-120 characters
-Genre,string,Yes,Must be a valid genre
-Price,decimal,Yes,≥0
-Stock,int,Yes,≥0
+---
 
-🛣️ API Endpoints
+## 📁 Domain Model
 
-Method,Endpoint,Description
-POST,/api/books,Registers a new book.
-GET,/api/books,Returns all books (optional filters).
-GET,/api/books/{id},Returns a specific book by ID.
-PUT,/api/books/{id},Updates an existing book.
-DELETE,/api/books/{id},Removes a book from the database.
+The domain layer uses **class inheritance** to promote reuse, clarity, and scalability.
 
-🚥 HTTP Status Codes
+| Field  | Type    | Required | Rules                   |
+| ------ | ------- | -------- | ----------------------- |
+| Id     | GUID    | Yes      | Generated automatically |
+| Title  | string  | Yes      | 2–120 characters        |
+| Author | string  | Yes      | 2–120 characters        |
+| Genre  | string  | Yes      | Must be a valid genre   |
+| Price  | decimal | Yes      | ≥ 0                     |
+| Stock  | int     | Yes      | ≥ 0                     |
 
-Code,Usage,Description
-200,OK,Successful request with data returned.
-201,Created,Successfully created a new resource.
-204,No Content,Successful operation (Delete/Update) with no body.
-400,Bad Request,Validation errors or malformed data.
-404,Not Found,Resource or route not found.
-409,Conflict,Data duplication or business rule conflict.
-500,Internal Error,Unexpected server-side failure.
+---
 
-Gemini said
-Here is a professional and complete README.md in English for your project. It follows the standard structure for .NET GitHub repositories, highlighting the technical requirements and rules you mentioned.
+## 🛣️ API Endpoints
 
-📚 Bookstore Management API
-A robust REST API built with .NET to manage a bookstore's inventory. This project implements a full CRUD (Create, Read, Update, Delete) system, featuring domain inheritance, strict data validation, and automated documentation with Swagger.
+| Method | Endpoint        | Description                          |
+| ------ | --------------- | ------------------------------------ |
+| POST   | /api/books      | Registers a new book                 |
+| GET    | /api/books      | Returns all books (optional filters) |
+| GET    | /api/books/{id} | Returns a book by ID                 |
+| PUT    | /api/books/{id} | Updates an existing book             |
+| DELETE | /api/books/{id} | Removes a book from the system       |
 
-🚀 Technologies Used
-C# / .NET 8.0 (or your current version)
+---
 
-ASP.NET Core Web API
+## 🚥 HTTP Status Codes
 
-Swagger (Swashbuckle) for API documentation
+| Code | Meaning        | Description                           |
+| ---- | -------------- | ------------------------------------- |
+| 200  | OK             | Successful request with returned data |
+| 201  | Created        | Resource successfully created         |
+| 204  | No Content     | Successful update or deletion         |
+| 400  | Bad Request    | Validation or request errors          |
+| 404  | Not Found      | Resource not found                    |
+| 409  | Conflict       | Business rule or duplication conflict |
+| 500  | Internal Error | Unexpected server-side failure        |
 
-LINQ for data manipulation
+---
 
-🛠️ Features & Business Rules
-The system manages books with the following logic:
+## ⚙️ How to Run the Project
 
-Requirements
-[x] Create a new book.
+### Prerequisites
 
-[x] List all books.
+* .NET SDK 8.0+
 
-[x] Search for a specific book by ID.
+### Steps
 
-[x] Edit existing book details.
-
-[x] Delete a book from the system.
-
-Data Validation
-IDs: Automatically generated GUIDs.
-
-Length: Titles and Authors must be between 2 and 120 characters.
-
-Stock & Price: Must be greater than or equal to zero (non-negative).
-
-Genre: Must belong to a predefined list (Fiction, Romance, Mystery, etc.).
-
-Uniqueness: Prevents duplicate entries for the same title/author combination.
-
-Timestamps: Automatically manages CreatedAt and UpdatedAt fields.
-
-📁 Domain Model
-The project uses class inheritance to organize the domain, ensuring a clean and scalable architecture.
-
-Field	Type	Required	Rules
-Id	GUID	Yes	Generated automatically
-Title	string	Yes	2-120 characters
-Author	string	Yes	2-120 characters
-Genre	string	Yes	Must be a valid genre
-Price	decimal	Yes	≥0
-Stock	int	Yes	≥0
-🛣️ API Endpoints
-Method	Endpoint	Description
-POST	/api/books	Registers a new book.
-GET	/api/books	Returns all books (optional filters).
-GET	/api/books/{id}	Returns a specific book by ID.
-PUT	/api/books/{id}	Updates an existing book.
-DELETE	/api/books/{id}	Removes a book from the database.
-🚥 HTTP Status Codes
-Code	Usage	Description
-200	OK	Successful request with data returned.
-201	Created	Successfully created a new resource.
-204	No Content	Successful operation (Delete/Update) with no body.
-400	Bad Request	Validation errors or malformed data.
-404	Not Found	Resource or route not found.
-409	Conflict	Data duplication or business rule conflict.
-500	Internal Error	Unexpected server-side failure.
-
-⚙️ How to Run
 Clone the repository:
-git clone https://github.com/your-username/bookstore-api.git
+
+```bash
+git clone https://github.com/your-username/bookstore-management-api.git
+```
 
 Navigate to the project folder:
 
-cd bookstore-api
+```bash
+cd bookstore-management-api
+```
 
 Restore dependencies:
 
+```bash
 dotnet restore
+```
 
 Run the application:
 
+```bash
 dotnet run
+```
 
-Access Documentation: Once running, open http://localhost:5000/swagger (or the port shown in your terminal) to test the endpoints via Swagger UI.
+Access Swagger UI:
+
+```
+https://localhost:5001/swagger
+```
+
+(or the port shown in your terminal)
+
+---
+
+## 📌 Possible Improvements
+
+* Persistence layer with Entity Framework Core
+* Authentication & Authorization (JWT)
+* Pagination and filtering
+* Unit and integration tests
+* Docker support
+
+---
+
+## 🧠 Purpose
+
+This project was built to practice and demonstrate:
+
+* Clean API design
+* Domain-driven validation
+* Proper use of HTTP semantics
+* Modern .NET Web API patterns
+
+Feel free to fork, experiment, and extend 🚀
+
