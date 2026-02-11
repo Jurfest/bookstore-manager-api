@@ -1,0 +1,49 @@
+using BookstoreManager.Contracts.Requests;
+using BookstoreManager.Contracts.Responses;
+using BookstoreManager.Infrastructure;
+using BookstoreManager.Models;
+
+namespace BookstoreManager.UseCases;
+
+public class CreateBookUseCase
+{
+    public BookResponse Execute(CreateBookRequest request)
+    {
+        // Validate(request);
+        
+        using var dbContext = new BookstoreManagerDbContext();
+        
+        var entity = new Book {
+            Title = request.Title,
+            Author = request.Author,
+            Genre = request.Genre,
+            Price = request.Price,
+            Stock = request.Stock
+        };
+        dbContext.Books.Add(entity);
+        dbContext.SaveChanges();
+
+        return new BookResponse(
+            entity.Id,
+            entity.Title,
+            entity.Author,
+            entity.Genre.ToString(),
+            entity.Price,
+            entity.Stock,
+            entity.CreatedAt,
+            entity.UpdatedAt
+        );
+    }
+    
+    private void Validate(CreateBookRequest request)
+    {
+        // var validator = new RequestBookValidator();
+        // var result = validator.Validate(request);
+        //
+        // if (result.IsValid == false)
+        // {
+        //     var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+        //     throw new ErrorOnValidationException(errors);
+        // }
+    }
+}
