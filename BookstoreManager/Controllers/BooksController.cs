@@ -34,4 +34,15 @@ public class BooksController : ApiControllerBase
             
         return Ok(response);
     }
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(BookResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public IActionResult GetById([FromRoute] Guid id)
+    {
+        var useCase = new GetBookByIdUseCase();
+        var response = useCase.Execute(id);
+        return Ok(response);
+    }
 }
