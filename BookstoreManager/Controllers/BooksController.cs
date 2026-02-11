@@ -10,7 +10,7 @@ public class BooksController : ApiControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(BookResponse), StatusCodes.Status201Created)]
-    // [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
     public IActionResult AddBook([FromBody] CreateBookRequest request)
     {
         var useCase = new CreateBookUseCase();

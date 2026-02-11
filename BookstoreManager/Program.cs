@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BookstoreManager.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services
 // Swagger / OpenAPI | Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMvc(option => option.Filters.Add(typeof(ExceptionFilter)));
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
 

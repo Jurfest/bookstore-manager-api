@@ -1,7 +1,9 @@
 using BookstoreManager.Contracts.Requests;
 using BookstoreManager.Contracts.Responses;
+using BookstoreManager.Exceptions;
 using BookstoreManager.Infrastructure;
 using BookstoreManager.Models;
+using BookstoreManager.UseCases.SharedValidator;
 
 namespace BookstoreManager.UseCases;
 
@@ -9,7 +11,7 @@ public class CreateBookUseCase
 {
     public BookResponse Execute(CreateBookRequest request)
     {
-        // Validate(request);
+        Validate(request);
         
         using var dbContext = new BookstoreManagerDbContext();
         
@@ -37,13 +39,13 @@ public class CreateBookUseCase
     
     private void Validate(CreateBookRequest request)
     {
-        // var validator = new RequestBookValidator();
-        // var result = validator.Validate(request);
-        //
-        // if (result.IsValid == false)
-        // {
-        //     var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
-        //     throw new ErrorOnValidationException(errors);
-        // }
+        var validator = new RequestBookValidator();
+        var result = validator.Validate(request);
+        
+        if (result.IsValid == false)
+        {
+            var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
+            throw new ErrorOnValidationException(errors);
+        }
     }
 }
