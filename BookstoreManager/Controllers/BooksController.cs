@@ -18,21 +18,20 @@ public class BooksController : ApiControllerBase
         return Created(string.Empty, response);
     }
 
-    // [HttpGet]
-    // public IActionResult TempEndpoint()
-    // {
-    //     var response = new List<Book>()
-    //     {
-    //         new Book
-    //         {
-    //             Author = "Diego",
-    //             Price = 22,
-    //             Stock = 2,
-    //             Genre = BookGenre.Poetry,
-    //             Title = "Dieguito",
-    //         },
-    //     };
-    //         
-    //     return Ok(response);
-    // }
+    [HttpGet]
+    [ProducesResponseType(typeof(List<BookResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult GetAll()
+    {
+        var useCase = new GetAllBooksUseCase();
+            
+        var response = useCase.Execute();
+
+        if (response.Count == 0)
+        {
+            return NoContent();
+        }
+            
+        return Ok(response);
+    }
 }
