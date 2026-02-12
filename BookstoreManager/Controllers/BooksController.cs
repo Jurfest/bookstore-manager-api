@@ -45,4 +45,18 @@ public class BooksController : ApiControllerBase
         var response = useCase.Execute(id);
         return Ok(response);
     }
+
+    // No PUT, o ID vem pela rota, não pelo body.
+    [HttpPut]
+    [Route("{id:guid}")]
+    [ProducesResponseType(typeof(BookResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public IActionResult UpdateBook([FromRoute] Guid id, [FromBody] UpdateBookRequest request)
+    {
+        var useCase = new UpdateBookUseCase();
+        var response = useCase.Execute(id, request);
+        
+        return Ok(response);
+    }
 }

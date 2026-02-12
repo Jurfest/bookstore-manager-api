@@ -3,6 +3,8 @@ using FluentValidation;
 
 namespace BookstoreManager.UseCases.SharedValidator;
 
+// TODO: - Add rule that verifies if there will be no duplicate title and author
+
 public class RequestBookValidator : AbstractValidator<CreateBookRequest>
 {
         public RequestBookValidator()
