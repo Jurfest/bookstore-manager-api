@@ -1,6 +1,6 @@
 # 📚 Bookstore Management API
 
-A robust and well-structured REST API built with **.NET** to manage a bookstore's inventory. This project demonstrates clean architecture principles, domain modeling with inheritance, strict business rules, and a complete **CRUD** (Create, Read, Update, Delete) flow, all documented automatically via **Swagger**.
+A well-structured REST API built with **.NET** to manage a bookstore's inventory. This project demonstrates clean architecture principles and a complete **CRUD** (Create, Read, Update, Delete) flow, all documented automatically via **Swagger**.
 
 This repository is ideal for learning, technical assessments, and as a solid foundation for real-world .NET Web API projects.
 
@@ -11,7 +11,8 @@ This repository is ideal for learning, technical assessments, and as a solid fou
 * **C# / .NET 8.0**
 * **ASP.NET Core Web API**
 * **Swagger (Swashbuckle)** — interactive API documentation
-* **Data Annotations & Domain Validation**
+* **FluentValidation** — request validation
+* **Entity Framework Core / SQLite** — data persistence
 
 ---
 
@@ -58,7 +59,7 @@ The domain layer uses **class inheritance** to promote reuse, clarity, and scala
 | Id     | GUID    | Yes      | Generated automatically |
 | Title  | string  | Yes      | 2–120 characters        |
 | Author | string  | Yes      | 2–120 characters        |
-| Genre  | string  | Yes      | Must be a valid genre   |
+| Genre  | enum    | Yes      | Must be a valid genre   |
 | Price  | decimal | Yes      | ≥ 0                     |
 | Stock  | int     | Yes      | ≥ 0                     |
 
@@ -125,31 +126,32 @@ dotnet run
 Access Swagger UI:
 
 ```
-https://localhost:5001/swagger
+https://localhost:<port>/swagger
 ```
-
-(or the port shown in your terminal)
 
 ---
 
 ## 📌 Possible Improvements
 
-* Persistence layer with Entity Framework Core
+* Repository pattern / abstraction over DbContext
+* Migrations & production-ready database configuration
 * Authentication & Authorization (JWT)
-* Pagination and filtering
+* Pagination, filtering, sorting
 * Unit and integration tests
 * Docker support
+* Endpoint to expose supported book genres (e.g. `GET /api/books/genres`)
 
 ---
 
 ## 🧠 Purpose
 
-This project was built to practice and demonstrate:
+This project was designed as a learning and demonstration exercise focusing on:
 
-* Clean API design
-* Domain-driven validation
-* Proper use of HTTP semantics
-* Modern .NET Web API patterns
+* Clean architecture-inspired structure
+* Proper separation of concerns (Controllers / UseCases / Domain / Infrastructure)
+* Validation and business rule enforcement
+* Correct use of HTTP semantics
+* Lightweight persistence with SQLite
 
 Feel free to fork, experiment, and extend 🚀
 
