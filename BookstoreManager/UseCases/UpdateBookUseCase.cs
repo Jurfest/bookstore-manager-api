@@ -13,11 +13,13 @@ public class UpdateBookUseCase
         Validate(request);
 
         using var dbContext = new BookstoreManagerDbContext();
-
+        
         var entity = dbContext.Books.FirstOrDefault(b => b.Id == id);
 
         if (entity is null)
             throw new NotFoundException("Book not found.");
+        
+        ValidateBusinessRules(id, request, dbContext);
 
         entity.Update(
             request.Title,
@@ -50,6 +52,22 @@ public class UpdateBookUseCase
         {
             var errors = result.Errors.Select(e => e.ErrorMessage).ToList();
             throw new ErrorOnValidationException(errors);
+        }
+    }
+    
+    private void ValidateBusinessRules(Guid id, UpdateBookRequest request, BookstoreManagerDbContext dbContext)
+    {
+        var alreadyExists = dbContext.Books.Any(book =>
+            book.Id != id &&
+            book.Title == request.Title &&
+            book.Author == request.Author);
+
+        if (alreadyExists)
+        {
+            throw new ErrorOnValidationException(new List<string>
+            {
+                "A book with the same title and author already exists."
+            });
         }
     }
 }
