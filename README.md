@@ -148,7 +148,7 @@ https://localhost:<port>/swagger
 This project was designed as a learning and demonstration exercise focusing on:
 
 * Clean architecture-inspired structure
-* Proper separation of concerns (Controllers / UseCases / Domain / Infrastructure)
+* Proper separation of concerns (Controllers / UseCases / Infrastructure...)
 * Validation and business rule enforcement
 * Correct use of HTTP semantics
 * Lightweight persistence with SQLite
