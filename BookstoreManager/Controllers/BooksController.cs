@@ -59,4 +59,16 @@ public class BooksController : ApiControllerBase
         
         return Ok(response);
     }
+
+    [HttpDelete]
+    [Route("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status404NotFound)]
+    public IActionResult Delete([FromRoute] Guid id)
+    {
+        var useCase = new DeleteBookUseCase();
+        useCase.Execute(id);
+
+        return NoContent();
+    }
 }
