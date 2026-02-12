@@ -15,6 +15,8 @@ public class CreateBookUseCase
         
         using var dbContext = new BookstoreManagerDbContext();
         
+        ValidateBusinessRules(request, dbContext);
+        
         var entity = new Book {
             Title = request.Title,
             Author = request.Author,
@@ -48,4 +50,20 @@ public class CreateBookUseCase
             throw new ErrorOnValidationException(errors);
         }
     }
+    
+    private void ValidateBusinessRules(CreateBookRequest request, BookstoreManagerDbContext dbContext)
+    {
+        var alreadyExists = dbContext.Books.Any(book =>
+            book.Title == request.Title &&
+            book.Author == request.Author);
+
+        if (alreadyExists)
+        {
+            throw new ErrorOnValidationException(new List<string>
+            {
+                "A book with the same title and author already exists."
+            });
+        }
+    }
+
 }
